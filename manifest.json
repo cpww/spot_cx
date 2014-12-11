@@ -1,0 +1,11 @@
+{
+  "name": "Beam Me Up Spotty",
+  "description": "The coolest Spotify extension done by PWW",
+  "version": "0.0.1",
+  "permissions": ["contextMenus"],
+  "background": {
+    "persistent": false,
+    "scripts": ["script.js"]
+  },
+  "manifest_version": 2
+}
