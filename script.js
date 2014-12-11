@@ -15,3 +15,10 @@ function onClickHandler(info, tab) {
 
 // add click event
 chrome.contextMenus.onClicked.addListener(onClickHandler);
+
+// search form shit
+var search = document.querySelectorAll('[data-search]');
+
+search.on('click', function() {
+  console.log('clicked');
+})
