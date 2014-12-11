@@ -1,0 +1,11 @@
+{
+  "background": {
+    "persistent": false,
+    "page": "background.html"
+  },
+  icons": {
+    "128": "icon_128.png"
+  },
+  "version": "0.0.1",
+  "manifest_version": 2
+}
