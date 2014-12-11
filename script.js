@@ -1,7 +1,7 @@
 // Set up context menu at install time.
 chrome.runtime.onInstalled.addListener(function() {
   var context = "selection";
-  var title = "Google for Selected Text";
+  var title = "Search on Spotify";
   var id = chrome.contextMenus.create({"title": title, "contexts":[context],
                                          "id": "context" + context});
 });
@@ -15,3 +15,4 @@ function onClickHandler(info, tab) {
 
 // add click event
 chrome.contextMenus.onClicked.addListener(onClickHandler);
+
