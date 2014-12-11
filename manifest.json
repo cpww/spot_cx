@@ -2,6 +2,11 @@
   "name": "Beam Me Up Spotty",
   "description": "The coolest Spotify extension done by PWW",
   "version": "0.0.1",
+  "icons" : {
+    "16" : "images/icons/pww_16.png",
+    "48" : "images/icons/pww_48.png",
+    "128" : "images/icons/pww_128.png"
+  },
   "permissions": ["contextMenus"],
   "background": {
     "persistent": false,
