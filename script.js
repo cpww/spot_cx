@@ -41,9 +41,13 @@ function onClickHandler(info, tab) {
     format: "json"
   })
   .done(function(data) {
+    // Since the first item in the data object differs based on selected
+    // text type, this is the most elegant way to get the first object
+    var type = Object.keys(data);
+    var url = data[type].items[0].external_urls.spotify;
   	console.log(data);
-  	var url = data.artists.items[0].external_urls.spotify;
-  	console.log(url);
+    console.log('data type:' + type);
+    console.log('constructed URL:' + url);
   });
 
   // TODO: invoke popup html
