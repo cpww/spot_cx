@@ -7,7 +7,7 @@
     "48" : "images/icons/pww_48.png",
     "128" : "images/icons/pww_128.png"
   },
-  "permissions": ["contextMenus"],
+  "permissions": ["contextMenus", "notifications"],
   "background": {
     "persistent": false,
     "scripts": ["jquery.js","script.js"]

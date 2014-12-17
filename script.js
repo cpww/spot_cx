@@ -18,6 +18,11 @@ chrome.runtime.onInstalled.addListener(function() {
 	});
 });
 
+function getNotificationId() {
+  var id = Math.floor(Math.random() * 9007199254740992) + 1;
+  return id.toString();
+}
+
 // The onClicked callback function.
 function onClickHandler(info, tab) {
 	// console logs the arguments passed to the on
@@ -36,6 +41,14 @@ function onClickHandler(info, tab) {
   var spotifyApi = "https://api.spotify.com/v1/search?q=" + sText + "&type=" + sTextType;
   console.log(spotifyApi);
 
+  var id = getNotificationId()
+  chrome.notifications.create(id, {
+    title: 'Fuck You Rod',
+    iconUrl: 'fur.png',
+    type: 'basic',
+    message: 'Fetching your shit'
+    }, function() {});
+
 	// make ajax call to spotify api with callback function
   $.getJSON( spotifyApi, {
     format: "json"
@@ -44,11 +57,24 @@ function onClickHandler(info, tab) {
   	console.log(data);
   	var url = data.artists.items[0].external_urls.spotify;
   	console.log(url);
+    console.log(id);
+    chrome.notifications.update(id, {
+      title: 'Fuck You Rod',
+      iconUrl: 'tuf.png',
+      type: 'basic',
+      message: 'your url is: ' + url
+      }, function() {});
   });
+};
 
-  // TODO: invoke popup html
+function notificationClickHandler(id) {
+  console.log(id);
+  chrome.notifications.getAll(function(notifications) {
+    console.log(notifications);
+  });
 };
 
 // add click event
 chrome.contextMenus.onClicked.addListener(onClickHandler);
+chrome.notifications.onClicked.addListener(notificationClickHandler);
 
