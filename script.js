@@ -48,9 +48,13 @@ function onClickHandler(info, tab) {
   	console.log(data);
     console.log('data type:' + type);
     console.log('constructed URL:' + url);
+
+    // TODO: invoke context to script to modify justified
+    // elements to turn off spinner and add an <a> tag
   });
 
-  // TODO: invoke popup html
+  // TODO: invoke context script to inject "spinner"
+  // gif into the DOM
 };
 
 // add click event
