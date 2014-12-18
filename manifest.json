@@ -10,7 +10,14 @@
   "permissions": ["contextMenus"],
   "background": {
     "persistent": false,
-    "scripts": ["jquery.js","script.js"]
+    "scripts": ["jquery.js","background.js"]
   },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["jquery.js", "content.js"],
+      "css": ["content.css"]
+    }
+  ],
   "manifest_version": 2
 }

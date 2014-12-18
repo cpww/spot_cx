@@ -1,0 +1,39 @@
+/*
+  Yes styling with ID's is heinous but we
+  want to be specific to not screw with
+  anything we don't want to. God forgive me.
+*/
+
+#spotty-plugin-content {
+  background-color: rgba(6, 130, 4, 0.77);
+  text-align: center;
+  right: 2%;
+  top: 2%;
+  min-height: 30px;
+  min-width: 100px;
+  position: fixed;
+  z-index: 9999;
+  padding: 5px;
+  border-radius: 6px;
+  border: solid 1px #000;
+  transition: 0.3s;
+}
+
+#spotty-plugin-close {
+  float: right;
+  cursor: pointer;
+  padding: 5px;
+  font-weight: bold;
+}
+
+#spotty-currently-searching-for {
+  font-size: 15px;
+  margin: 1px auto;
+  color: #fff;
+}
+
+#spotty-search-urls a {
+  font-size: 13px;
+  margin: 1px auto;
+  color:#fff;
+}

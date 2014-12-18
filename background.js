@@ -18,45 +18,61 @@ chrome.runtime.onInstalled.addListener(function() {
 	});
 });
 
+function openFrame(tab, sText) {
+  chrome.tabs.sendMessage(tab, {
+    command: "openFrame",
+    selection: sText
+  });
+}
+
+function showInfoFrame(tab, url) {
+  chrome.tabs.sendMessage(tab, {
+    command: "updateFrame",
+    searchUrl: url
+  });
+}
+
 // The onClicked callback function.
 function onClickHandler(info, tab) {
 	// console logs the arguments passed to the on
-	// click handler (i.e. info and tab)
+	// Click handler (i.e. info and tab)
 	console.log(arguments);
 
-	// grabs the selection text
+	// Grabs the selection text
   var sText = info.selectionText;
 
-  // grabs the selected text type to be appended to the spotify
+  // Start spinner
+  openFrame(tab.id, sText);
+
+  // Make sText clean for Url search
+  var sTextClean = sText.replace(/ /g, '+');
+
+  // Grabs the selected text type to be appended to the spotify
   // API query string parameter
   var sTextType = info.menuItemId;
 	console.log(sTextType);
 
-  // constructs spotify API url based on selected text
-  var spotifyApi = "https://api.spotify.com/v1/search?q=" + sText + "&type=" + sTextType;
+  // Constructs spotify API url based on selected text
+  var spotifyApi = "https://api.spotify.com/v1/search?q=" + sTextClean + "&type=" + sTextType;
   console.log(spotifyApi);
 
-	// make ajax call to spotify api with callback function
+	// Make ajax call to spotify api with callback function
   $.getJSON( spotifyApi, {
     format: "json"
   })
   .done(function(data) {
     // Since the first item in the data object differs based on selected
-    // text type, this is the most elegant way to get the first object
+    // Text type, this is the most elegant way to get the first object
     var type = Object.keys(data);
     var url = data[type].items[0].external_urls.spotify;
   	console.log(data);
     console.log('data type:' + type);
     console.log('constructed URL:' + url);
 
-    // TODO: invoke context to script to modify justified
-    // elements to turn off spinner and add an <a> tag
+    showInfoFrame(tab.id, url);
   });
-
-  // TODO: invoke context script to inject "spinner"
-  // gif into the DOM
 };
 
-// add click event
+// Add click event
 chrome.contextMenus.onClicked.addListener(onClickHandler);
 
